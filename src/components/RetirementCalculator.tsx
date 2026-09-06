@@ -28,6 +28,7 @@ import { localeMap, translations, type SupportedCurrency, type SupportedLanguage
 const defaultInputs: RetirementInputs = {
   currentAge: 35,
   retirementAge: 65,
+  lifeExpectancy: 90,
   currentSavings: 150000,
   monthlyContribution: 15000,
   annualReturn: 7,
@@ -48,6 +49,7 @@ const formatNumberInput = (value: string) => {
 const makeDrafts = (values: RetirementInputs) => ({
   currentAge: String(values.currentAge),
   retirementAge: String(values.retirementAge),
+  lifeExpectancy: String(values.lifeExpectancy),
   currentSavings: formatNumberInput(String(values.currentSavings)),
   monthlyContribution: formatNumberInput(String(values.monthlyContribution)),
   annualReturn: formatNumberInput(String(values.annualReturn)),
@@ -242,6 +244,9 @@ export default function RetirementCalculator() {
                 {numberField(t.retirementAge, inputDrafts.retirementAge, t.help.retirementAge, (rawValue) => handleNumericInput("retirementAge", rawValue), () => handleNumericBlur("retirementAge", defaultInputs.retirementAge))}
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
+                {numberField(t.lifeExpectancy, inputDrafts.lifeExpectancy, t.help.lifeExpectancy, (rawValue) => handleNumericInput("lifeExpectancy", rawValue), () => handleNumericBlur("lifeExpectancy", defaultInputs.lifeExpectancy))}
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 {numberField(t.currentSavings, inputDrafts.currentSavings, t.help.currentSavings, (rawValue) => handleNumericInput("currentSavings", rawValue), () => handleNumericBlur("currentSavings", defaultInputs.currentSavings))}
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
@@ -292,6 +297,9 @@ export default function RetirementCalculator() {
             </Typography>
             <Typography variant="body2">
               {t.yearsToRetirement}: {result.yearsToRetirement}
+            </Typography>
+            <Typography variant="body2">
+              {t.yearsInRetirement}: {result.yearsInRetirement}
             </Typography>
             <Typography variant="body2">
               {t.requiredFund}: {requiredFundAmount}

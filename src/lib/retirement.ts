@@ -1,6 +1,7 @@
 export type RetirementInputs = {
   currentAge: number;
   retirementAge: number;
+  lifeExpectancy: number;
   currentSavings: number;
   monthlyContribution: number;
   annualReturn: number;
@@ -12,6 +13,7 @@ export type RetirementInputs = {
 export function calculateRetirementProjection(input: RetirementInputs) {
   const years = Math.max(input.retirementAge - input.currentAge, 0);
   const yearsToRetirement = Math.max(years, 0);
+  const yearsInRetirement = Math.max(input.lifeExpectancy - input.retirementAge, 0);
 
   const monthlyRate = input.annualReturn / 100 / 12;
   let balance = input.currentSavings;
@@ -27,13 +29,28 @@ export function calculateRetirementProjection(input: RetirementInputs) {
     Math.max(inflationAdjustedMonthlyTarget * (input.desiredIncomeReplacement / 100), 0);
 
   const annualIncomeNeeded = monthlyIncomeAtRetirement * 12;
-  const annualWithdrawalRate = Math.max(input.annualReturn / 100, 0.03);
-  const retirementFundNeeded = annualIncomeNeeded / annualWithdrawalRate;
+  const retirementMonths = yearsInRetirement * 12;
+  const monthlyInflationRate = input.annualInflation / 100 / 12;
+  let retirementFundNeeded = 0;
+
+  if (retirementMonths > 0) {
+    if (monthlyRate === monthlyInflationRate) {
+      retirementFundNeeded = monthlyIncomeAtRetirement * retirementMonths / (1 + monthlyRate);
+    } else {
+      retirementFundNeeded =
+        monthlyIncomeAtRetirement *
+        (1 - ((1 + monthlyInflationRate) / (1 + monthlyRate)) ** retirementMonths) /
+        (monthlyRate - monthlyInflationRate);
+    }
+  }
+
+  retirementFundNeeded = Math.max(retirementFundNeeded, 0);
 
   const shortfall = Math.max(retirementFundNeeded - balance, 0);
 
   return {
     yearsToRetirement,
+    yearsInRetirement,
     projectedBalance: balance,
     retirementFundNeeded,
     annualIncomeNeeded,
