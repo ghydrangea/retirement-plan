@@ -13,7 +13,6 @@ describe("calculateRetirementProjection", () => {
       annualReturn: 7,
       annualInflation: 2.5,
       monthlyTargetIncome: 80000,
-      desiredIncomeReplacement: 70,
     });
 
     assert.equal(result.yearsToRetirement, 35);
@@ -33,7 +32,6 @@ describe("calculateRetirementProjection", () => {
       annualReturn: 7,
       annualInflation: 2.5,
       monthlyTargetIncome: 50000,
-      desiredIncomeReplacement: 70,
     });
 
     assert.equal(result.yearsInRetirement, 0);

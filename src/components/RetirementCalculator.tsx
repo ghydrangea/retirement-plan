@@ -34,7 +34,6 @@ const defaultInputs: RetirementInputs = {
   annualReturn: 7,
   annualInflation: 2.5,
   monthlyTargetIncome: 45000,
-  desiredIncomeReplacement: 70,
 };
 
 const formatNumberInput = (value: string) => {
@@ -55,7 +54,6 @@ const makeDrafts = (values: RetirementInputs) => ({
   annualReturn: formatNumberInput(String(values.annualReturn)),
   annualInflation: formatNumberInput(String(values.annualInflation)),
   monthlyTargetIncome: formatNumberInput(String(values.monthlyTargetIncome)),
-  desiredIncomeReplacement: formatNumberInput(String(values.desiredIncomeReplacement)),
 });
 
 function numberField(
@@ -260,9 +258,6 @@ export default function RetirementCalculator() {
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 {numberField(t.monthlyTargetIncome, inputDrafts.monthlyTargetIncome, t.help.monthlyTargetIncome, (rawValue) => handleNumericInput("monthlyTargetIncome", rawValue), () => handleNumericBlur("monthlyTargetIncome", defaultInputs.monthlyTargetIncome))}
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                {numberField(t.replacement, inputDrafts.desiredIncomeReplacement, t.help.replacement, (rawValue) => handleNumericInput("desiredIncomeReplacement", rawValue), () => handleNumericBlur("desiredIncomeReplacement", defaultInputs.desiredIncomeReplacement))}
               </Grid>
             </Grid>
 

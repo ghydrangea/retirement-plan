@@ -7,7 +7,6 @@ export type RetirementInputs = {
   annualReturn: number;
   annualInflation: number;
   monthlyTargetIncome: number;
-  desiredIncomeReplacement: number;
 };
 
 export function calculateRetirementProjection(input: RetirementInputs) {
@@ -25,8 +24,7 @@ export function calculateRetirementProjection(input: RetirementInputs) {
   const inflationAdjustedMonthlyTarget =
     input.monthlyTargetIncome * (1 + input.annualInflation / 100) ** yearsToRetirement;
 
-  const monthlyIncomeAtRetirement =
-    Math.max(inflationAdjustedMonthlyTarget * (input.desiredIncomeReplacement / 100), 0);
+  const monthlyIncomeAtRetirement = Math.max(inflationAdjustedMonthlyTarget, 0);
 
   const annualIncomeNeeded = monthlyIncomeAtRetirement * 12;
   const retirementMonths = yearsInRetirement * 12;

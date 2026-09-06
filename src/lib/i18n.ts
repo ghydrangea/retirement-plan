@@ -27,7 +27,6 @@ export const translations = {
     annualReturn: "Annual return (%)",
     inflation: "Inflation (%)",
     monthlyTargetIncome: "Monthly expense target",
-    replacement: "Replacement (%)",
     ageTarget: "Retirement age target",
     projection: "Projection",
     onTrack: "You are on track to meet your retirement goal.",
@@ -50,7 +49,6 @@ export const translations = {
       annualReturn: "Expected yearly investment growth before retirement.",
       inflation: "The average yearly increase in living costs.",
       monthlyTargetIncome: "The monthly lifestyle cost you want in retirement.",
-      replacement: "The percentage of your working income you want to replace after retirement.",
     },
   },
   th: {
@@ -63,7 +61,6 @@ export const translations = {
     annualReturn: "ผลตอบแทนต่อปี (%)",
     inflation: "เงินเฟ้อ (%)",
     monthlyTargetIncome: "ค่าใช้จ่ายรายเดือนเป้าหมาย",
-    replacement: "อัตราทดแทน (%)",
     ageTarget: "เป้าหมายอายุเกษียณ",
     projection: "ผลคาดการณ์",
     onTrack: "คุณอยู่ในเส้นทางที่ทำให้บรรลุเป้าหมายเกษียณได้",
@@ -86,7 +83,6 @@ export const translations = {
       annualReturn: "อัตราผลตอบแทนจากการลงทุนต่อปีที่คาดหวัง",
       inflation: "อัตราเงินเฟ้อเฉลี่ยต่อปีที่คาดไว้",
       monthlyTargetIncome: "ค่าใช้จ่ายต่อเดือนที่คุณต้องการในช่วงเกษียณ",
-      replacement: "เปอร์เซ็นต์ของรายได้ก่อนเกษียณที่คุณต้องการให้คงอยู่หลังเกษียณ",
     },
   },
 } as const;
